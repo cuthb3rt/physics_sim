@@ -2,7 +2,6 @@ __author__ = 'Andy'
 
 import physics
 import vec_math as vm
-from config import DELTA_T
 
 
 class Particle():
@@ -17,7 +16,7 @@ class Particle():
 
     def __repr__(self):
         # return "ID: %s; Mass: %s; Position: %s; Velocity: %s; Acceleration: %s" % (self.id, self.m, self.x, self.v, self.a)
-        return "%s\t%s\t%s\t%s\t%s" % (self.id, self.m, vm.v_pretty(self.x), vm.v_pretty(self.v), vm.v_pretty(self.a))
+        return "%s\tm: %s\tx: %s\tv: %s\ta: %s" % (self.id, self.m, vm.v_pretty(self.x), vm.v_pretty(self.v), vm.v_pretty(self.a))
 
     def __init__(self, m, i_x, i_v):
         self.id = Particle.NUM_PARTICLES
@@ -30,8 +29,7 @@ class Particle():
         self.a = vm.NULL_VEC
         self.proper_time = 0
 
-    @property
-    def new_acceleration(self):
+    def update_acceleration(self):
         """
         Calculate acceleration due to all other particles
 
@@ -51,26 +49,24 @@ class Particle():
 
         # print res_f
 
-        return vm.v_div(res_f, self.m)
+        self.a = vm.v_div(res_f, self.m)
 
-    @property
-    def new_velocity(self):
+    def update_velocity(self, delta_t):
         """
         Assume that velocity is initial plus acceleration*time interval
         :return:
         """
-        return vm.v_add(self.v, vm.v_mult(self.a, DELTA_T))
+        self.v = vm.v_add(self.v, vm.v_mult(self.a, delta_t))
 
-    @property
-    def new_position(self):
+    def update_position(self, delta_t):
         """
         Assume that new position is old position plus velocity*time interval
         :return:
         """
-        return vm.v_add(self.x, vm.v_mult(self.v, DELTA_T))
+        self.x = vm.v_add(self.x, vm.v_mult(self.v, delta_t))
 
-    def iterate(self):
-        self.a = self.new_acceleration
-        self.v = self.new_velocity
-        self.x = self.new_position
-        self.proper_time += DELTA_T
+    def iterate(self, delta_t):
+        self.update_acceleration()
+        self.update_velocity(delta_t)
+        self.update_position(delta_t)
+        self.proper_time += delta_t
