@@ -65,8 +65,8 @@ def render(sim_name, version=1):
     write['file'].setValue(output_seq)
     write['file_type'].setValue('jpg')
     write['_jpeg_quality'].setValue(0.75)
-    nuke.execute(write, frame_range[0], frame_range[1], 1)
     nuke.scriptSave(output_script)
+    nuke.execute(write, frame_range[0], frame_range[1], 1)
 
 
 if __name__ == "__main__":
