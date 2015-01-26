@@ -56,6 +56,7 @@ class Particle():
         Assume that velocity is initial plus acceleration*time interval
         :return:
         """
+        # print self.a
         self.v = vm.v_add(self.v, vm.v_mult(self.a, delta_t))
 
     def update_position(self, delta_t):

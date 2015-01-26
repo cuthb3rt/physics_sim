@@ -40,7 +40,6 @@ def generate_particles(num, mesh, v_range, m_range):
     :return:
     """
     for i in range(3):
-        print i
         mesh[i].append(mesh[3])
     # print mesh
     # print num
@@ -50,9 +49,10 @@ def generate_particles(num, mesh, v_range, m_range):
         random_velocity = [random_in_range(v_range) for i in range(3)]
         # if not planar:
         #     random_velocity.append(random_in_range(v_range))
+        # print random_mass, random_position, random_velocity
         Particle(random_mass, random_position, random_velocity)
-        print random_mass, random_position, random_velocity
 
+    print "Particles Initialised:"
     for particle in Particle.ALL_PARTICLES:
         print particle
 

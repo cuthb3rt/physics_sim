@@ -18,7 +18,7 @@ def read_db(sim_name):
     :rtype: dict
     """
     d = shelve.open(LOG_FILE)
-    print d.keys()
+    # print d.keys()
     sim_dict = d[sim_name]
     d.close()
     return sim_dict

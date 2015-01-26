@@ -32,7 +32,7 @@ def render(sim_name, version=1):
     transforms = []
     previous_merge = None
     for particle_id in sim_dict.keys():
-        # print "Processing Particle %s" % particle_id,
+        print "Processing Particle %s:" % particle_id,
         tf = nuke.nodes.Transform(name="Particle_%s_transform" % particle_id)
         tf.setInput(0, cwt)
         transforms.append(tf)
@@ -51,7 +51,7 @@ def render(sim_name, version=1):
             new_merge.setInput(1, previous_merge)
         previous_merge = new_merge
 
-        # print "."
+        print ""
 
     print frame_range
 

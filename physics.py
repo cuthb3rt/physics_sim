@@ -16,10 +16,12 @@ def calculate_force(p1, p2):
     """
     direction = vec_math.v_sub(p1.x, p2.x)  # direction vector of the force
     sep = vec_math.v_mag(direction)  # separation of the 2 particles
-    try:
-        f_m = - (G * p1.m * p2.m) / sep ** 2  # magnitude of the force
-    except ZeroDivisionError:
+    if sep <= 100.0:  # Make the approximation that within 1 meter, there is no force
         return vec_math.NULL_VEC
+    # try:
+    f_m = - (G * p1.m * p2.m) / sep ** 2  # magnitude of the force
+    # except ZeroDivisionError:
+    #     return vec_math.NULL_VEC
 
     f_v = [f_m * i for i in vec_math.v_norm(direction)]  # force vector is normalised vector * force magnitude
     # print "Force: %s" % f_v
