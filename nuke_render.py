@@ -2,31 +2,26 @@ __author__ = 'Andy'
 
 import nuke
 import os
-import shelve
+import file_io
+from config import RENDER_ROOT
 
-def read_db(sim_name):
-
-    d = shelve.open("C:/Users/Andy/.nuke/sys.PYTHON/physics_sim/log/sim_log.txt")
-    print d.keys()
-    sim_dict = d[sim_name]
-    d.close()
-
-    return sim_dict
 
 def render(sim_name, version=1):
 
-    sim_dict = read_db(sim_name)
+    sim_dict = file_io.read_db(sim_name)
 
-    output_dir = 'C:/Nuke/renders/%s_v%03d' % (sim_name, version)
+    output_dir = '%s/%s_v%03d' % (RENDER_ROOT, sim_name, version)
     if not os.path.isdir(output_dir):
         os.makedirs(output_dir)
     output_seq = '%s/%s_v%03d.%%04d.jpg' % (output_dir, sim_name, version)
     output_script = '%s/%s_v%03d.nk' % (output_dir, sim_name, version)
 
-    sim_dict = read_db(sim_name)
-    # print sim_dict
+    try:
+        nuke.root()["format"].setValue("HD_1080")
+    except TypeError:
+        nuke.root()["format"].setValue("HD")
+        # for i in nuke.formats(): print i.name()
 
-    nuke.root()["format"].setValue("HD_1080")
     # Create Colour_Wheel and tranform it
     cw = nuke.nodes.ColorWheel()
     cwt = nuke.nodes.Transform(scale=0.05)
@@ -37,7 +32,7 @@ def render(sim_name, version=1):
     transforms = []
     previous_merge = None
     for particle_id in sim_dict.keys():
-        # print "Processing Particle %s" % particle_id,
+        print "Processing Particle %s:" % particle_id,
         tf = nuke.nodes.Transform(name="Particle_%s_transform" % particle_id)
         tf.setInput(0, cwt)
         transforms.append(tf)
@@ -56,7 +51,7 @@ def render(sim_name, version=1):
             new_merge.setInput(1, previous_merge)
         previous_merge = new_merge
 
-        # print "."
+        print ""
 
     print frame_range
 
@@ -70,8 +65,10 @@ def render(sim_name, version=1):
     write['file'].setValue(output_seq)
     write['file_type'].setValue('jpg')
     write['_jpeg_quality'].setValue(0.75)
-    nuke.execute(write, frame_range[0], frame_range[1], 1)
     nuke.scriptSave(output_script)
+    nuke.execute(write, frame_range[0], frame_range[1], 1)
 
-# run with sim name and maybe version
-render('100_parts_e7')
+
+if __name__ == "__main__":
+    # run with sim name and maybe version
+    render('100_parts_e7')

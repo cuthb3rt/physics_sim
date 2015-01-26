@@ -21,7 +21,9 @@ def v_norm(v):
 
 
 def v_mult(v, n):
-    return [v[i] * n for i in range(N_DIMS)]
+    # print range(3)
+    # print "\nMultiplying %s by %s" % (v, n)
+    return [(v[i] * n) for i in range(N_DIMS)]
 
 
 def v_div(v, n):
