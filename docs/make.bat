@@ -5,6 +5,7 @@ REM Command file for Sphinx documentation
 if "%SPHINXBUILD%" == "" (
 	set SPHINXBUILD=sphinx-build
 )
+set DOCSDIR=../../physics_sim/docs
 set BUILDDIR=../../physics_sim_docs
 set PDFBUILDDIR=/tmp
 set PDF=../manual.pdf
@@ -83,6 +84,16 @@ if "%1" == "html" (
 	echo.Build finished. The HTML pages are in %BUILDDIR%/html.
 	goto end
 )
+
+if "%1" == "htmlcommit" (
+	cd %BUILDDIR%/html
+    git add --all
+    git commit -am "rebuilt docs"
+    git push origin gh-pages
+    cd %DOCSDIR%
+	goto end
+)
+
 
 if "%1" == "dirhtml" (
 	%SPHINXBUILD% -b dirhtml %ALLSPHINXOPTS% %BUILDDIR%/dirhtml
