@@ -5,8 +5,10 @@ REM Command file for Sphinx documentation
 if "%SPHINXBUILD%" == "" (
 	set SPHINXBUILD=sphinx-build
 )
-set DOCSDIR=../../physics_sim/docs
-set BUILDDIR=../../physics_sim_docs
+
+set PROJECTNAME=physics_sim
+set DOCSDIR=../../../%PROJECTNAME%/docs
+set BUILDDIR=../../documentation/%PROJECTNAME%
 set PDFBUILDDIR=/tmp
 set PDF=../manual.pdf
 set ALLSPHINXOPTS=-d %BUILDDIR%/doctrees %SPHINXOPTS% .
