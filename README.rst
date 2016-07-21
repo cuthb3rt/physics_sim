@@ -1,6 +1,3 @@
-physics_sim
-~~~~~~~~~~~
-
 Basic Particle Simulator Using nuke to render images of the particles
 
 Just a little project to try out simulating forces and particles using vectors etc.
@@ -26,7 +23,7 @@ Issues/Possible Features:
     - Can then set the bounce forces (ie how much does the velocity scale when they hit...)
     - Can also take into account the fact that within the particle, the force decreases linearly (this will counteract
         the infinite force when they're in the same place...)
-- Maybe add the ability to manually place particles and sim from there / override the velocities...  
+- Maybe add the ability to manually place particles and sim from there / override the velocities...
 - Would be nice to increase the granularity of the simulation for shorter time intervals (more precision)
   while keeping the same playback info
 - Maybe apply burnins to the output containing sim data

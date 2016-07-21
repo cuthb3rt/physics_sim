@@ -11,8 +11,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   includeme
+   autodoc
 
+.. include:: ../README.rst
 
 Indices and tables
 ==================
