@@ -1,3 +1,7 @@
+This is the documentation for https://github.com/cuthb3rt/physics_sim
+
+The docs are available on GitHub Pages here: http://cuthb3rt.github.io/physics_sim
+
 Basic Particle Simulator Using nuke to render images of the particles
 
 Just a little project to try out simulating forces and particles using vectors etc.
