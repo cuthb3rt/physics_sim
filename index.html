@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Phyics Sim 1.0 documentation" href="#" />
-    <link rel="next" title="physics_sim" href="includeme.html" />
+    <link rel="next" title="Reference" href="autodoc.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -44,9 +44,66 @@
 <p>Contents:</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="includeme.html">physics_sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autodoc.html">Reference</a></li>
 </ul>
 </div>
+<p>Basic Particle Simulator Using nuke to render images of the particles</p>
+<p>Just a little project to try out simulating forces and particles using vectors etc.
+Also using Nuke (currently) to visualize the particles.
+Current implementation uses colour wheels distributed around the image with keyframes at the simulated time steps.</p>
+<p>Currently runs in 2 parts:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><dl class="first docutils">
+<dt>Simulation</dt>
+<dd><ul class="first last simple">
+<li>Create the particles and set up the initial configuration/distribution</li>
+<li>Run the simulation</li>
+<li>Output the results to a text file (currently stored using shelve as a dictionary)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Visualisation</dt>
+<dd><ul class="first last simple">
+<li>Nuke 9 python module implemented</li>
+<li>Create a colour wheel and scale it down, then apply an animated
+transform for every particle and merge them together</li>
+<li>Render out an Image Sequence with the results and save the script to that folder</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+<p>Issues/Possible Features:</p>
+<ul>
+<li><p class="first">Particles don&#8217;t collide, they just swoosh around each other.</p>
+</li>
+<li><dl class="first docutils">
+<dt>Add some boundary forces to see if they&#8217;re touching</dt>
+<dd><ul class="first last">
+<li><p class="first">Can then set the bounce forces (ie how much does the velocity scale when they hit...)</p>
+</li>
+<li><dl class="first docutils">
+<dt>Can also take into account the fact that within the particle, the force decreases linearly (this will counteract</dt>
+<dd><p class="first last">the infinite force when they&#8217;re in the same place...)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Maybe add the ability to manually place particles and sim from there / override the velocities...</p>
+</li>
+<li><p class="first">Would be nice to increase the granularity of the simulation for shorter time intervals (more precision)
+while keeping the same playback info</p>
+</li>
+<li><p class="first">Maybe apply burnins to the output containing sim data</p>
+</li>
+</ul>
 </div>
 <div class="section" id="indices-and-tables">
 <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
@@ -72,7 +129,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="#">Documentation overview</a><ul>
-      <li>Next: <a href="includeme.html" title="next chapter">physics_sim</a></li>
+      <li>Next: <a href="autodoc.html" title="next chapter">Reference</a></li>
   </ul></li>
 </ul>
 </div>
