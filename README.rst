@@ -8,6 +8,8 @@ Just a little project to try out simulating forces and particles using vectors e
 Also using Nuke (currently) to visualize the particles.
 Current implementation uses colour wheels distributed around the image with keyframes at the simulated time steps.
 
+If you want to visualise the simulation in another software, you will have to write a renderer and call that instead of the nuke renderer.
+
 Currently runs in 2 parts:
 
     1. Simulation
