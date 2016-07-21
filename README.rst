@@ -1,4 +1,6 @@
-# physics_sim
+physics_sim
+~~~~~~~~~~~
+
 Basic Particle Simulator Using nuke to render images of the particles
 
 Just a little project to try out simulating forces and particles using vectors etc.

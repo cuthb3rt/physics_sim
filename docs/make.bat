@@ -5,7 +5,9 @@ REM Command file for Sphinx documentation
 if "%SPHINXBUILD%" == "" (
 	set SPHINXBUILD=sphinx-build
 )
-set BUILDDIR=_build
+set BUILDDIR=../../physics_sim_docs
+set PDFBUILDDIR=/tmp
+set PDF=../manual.pdf
 set ALLSPHINXOPTS=-d %BUILDDIR%/doctrees %SPHINXOPTS% .
 set I18NSPHINXOPTS=%SPHINXOPTS% .
 if NOT "%PAPER%" == "" (
@@ -168,12 +170,12 @@ if "%1" == "latex" (
 )
 
 if "%1" == "latexpdf" (
-	%SPHINXBUILD% -b latex %ALLSPHINXOPTS% %BUILDDIR%/latex
-	cd %BUILDDIR%/latex
+	%SPHINXBUILD% -b latex %ALLSPHINXOPTS% %PDFBUILDDIR%/latex
+	cd %PDFBUILDDIR%/latex
 	make all-pdf
 	cd %~dp0
 	echo.
-	echo.Build finished; the PDF files are in %BUILDDIR%/latex.
+	echo.Build finished; the PDF files are in %PDFBUILDDIR%/latex.
 	goto end
 )
 
